@@ -1,6 +1,9 @@
-# @open-core/identity
+# @undefined-labs/identity
 
-Enterprise-grade identity, authentication, and authorization plugin for the OpenCore Framework.
+Identity, authentication, and authorization plugin for the OpenCore FiveM framework.
+
+> Maintained fork of [`@open-core/identity`](https://www.npmjs.com/package/@open-core/identity),
+> which is no longer maintained upstream. See [License](#license) for attribution.
 
 ## Documentation Index
 
@@ -22,7 +25,7 @@ The recommended way to use the identity system is through **Constructor Injectio
 
 ```ts
 import { Server } from "@open-core/framework";
-import { AccountService } from "@open-core/identity";
+import { AccountService } from "@undefined-labs/identity";
 
 @Server.Controller()
 export class MyController {
@@ -41,7 +44,7 @@ export class MyController {
 1.  **Implement your Store** (See [Contracts](./docs/contracts.md)):
 
     ```ts
-    import { Identity, IdentityStore } from "@open-core/identity";
+    import { Identity, IdentityStore } from "@undefined-labs/identity";
 
     class MyStore extends IdentityStore {
       /* ... */
@@ -132,7 +135,7 @@ Identity.install({
 
 ```ts
 import { Server } from "@open-core/framework";
-import { AuthService } from "@open-core/identity";
+import { AuthService } from "@undefined-labs/identity";
 
 @Server.Controller()
 export class AuthController {
@@ -168,4 +171,8 @@ The library only exports high-level components to keep your IDE suggestions clea
 
 ## License
 
-MIT
+[Apache-2.0](./LICENSE)
+
+This project is a fork of [`@open-core/identity`](https://www.npmjs.com/package/@open-core/identity)
+by the OpenCore Framework project, originally published under the MIT License and no
+longer maintained upstream. The original copyright is retained in [NOTICE](./NOTICE).

@@ -14,7 +14,7 @@ Minimum required:
 ### Example: Prisma Implementation
 
 ```ts
-import { IdentityStore, IdentityAccount } from "@open-core/identity";
+import { IdentityStore, IdentityAccount } from "@undefined-labs/identity";
 import { PrismaClient } from "@prisma/client";
 
 export class PrismaIdentityStore extends IdentityStore {
@@ -60,7 +60,7 @@ export class PrismaIdentityStore extends IdentityStore {
 You must register your store **before** calling `Identity.install()`.
 
 ```ts
-import { Identity } from "@open-core/identity";
+import { Identity } from "@undefined-labs/identity";
 import { PrismaIdentityStore } from "./stores/prisma-identity.store";
 
 // Use the helper function to register the singleton
@@ -76,7 +76,7 @@ Identity.install({
 Only required if `principal.mode` is set to `db`. It follows the same pattern as `IdentityStore`.
 
 ```ts
-import { Identity, RoleStore } from "@open-core/identity";
+import { Identity, RoleStore } from "@undefined-labs/identity";
 
 class MyRoleStore extends RoleStore {
   // ... Implement findByName, getDefaultRole, save, delete ...

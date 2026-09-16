@@ -31,7 +31,7 @@ Delegates principal resolution to an external HTTP service.
 To use `db` mode, implement the `RoleStore` contract:
 
 ```ts
-import { RoleStore, IdentityRole } from "@open-core/identity";
+import { RoleStore, IdentityRole } from "@undefined-labs/identity";
 import { Repository } from "typeorm";
 import { RoleEntity } from "./entities/role.entity";
 

@@ -106,7 +106,7 @@ Response example:
 If you use TypeORM, you must implement the `IdentityStore` contract.
 
 ```ts
-import { IdentityStore, IdentityAccount } from "@open-core/identity";
+import { IdentityStore, IdentityAccount } from "@undefined-labs/identity";
 import { Repository } from "typeorm";
 import { PlayerEntity } from "./entities/player.entity"; // Your TypeORM entity
 
@@ -161,7 +161,7 @@ Identity.install({
 
 ```ts
 import { Server } from "@open-core/framework";
-import { AuthService, AccountService } from "@open-core/identity";
+import { AuthService, AccountService } from "@undefined-labs/identity";
 
 @Server.Controller()
 export class AuthController {

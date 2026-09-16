@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: release
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      # A release can be cut from any commit, so check out the tag itself
+      # rather than whatever happens to be at the head of main.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - uses: pnpm/action-setup@v4
+
+      # No registry-url on purpose: it writes an .npmrc with a NODE_AUTH_TOKEN
+      # placeholder, and an empty token makes the publish unauthenticated,
+      # which surfaces as a misleading 404. Trusted publishing needs no token.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Verify tag matches package.json version
+        run: |
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          TAG="${{ github.event.release.tag_name }}"
+          if [ "$TAG" != "v$PKG_VERSION" ]; then
+            echo "Tag $TAG does not match package.json version v$PKG_VERSION" >&2
+            exit 1
+          fi
+          echo "Tag $TAG matches package.json version."
+
+      - name: Build
+        run: pnpm run build
+
+      # The runner's bundled npm is too old for trusted publishing, and
+      # pnpm publish does not support it at all.
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      - name: Publish to npm
+        run: npm publish --access public --provenance
