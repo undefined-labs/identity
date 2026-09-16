@@ -10,7 +10,7 @@ Instead of manually resolving services, you should always prefer constructor inj
 
 ```ts
 import { Server } from "@open-core/framework";
-import { AccountService } from "@open-core/identity";
+import { AccountService } from "@undefined-labs/identity";
 import { injectable } from "tsyringe";
 
 @injectable()
